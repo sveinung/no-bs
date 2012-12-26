@@ -5,3 +5,10 @@ sourceCompatibility = 1.7
 repositories {
     mavenCentral()
 }
+
+jettyVersion = '7.2.2.v20101205'
+dependencies {
+    compile group: 'org.eclipse.jetty', name: 'jetty-server', version: jettyVersion
+    compile group: 'org.eclipse.jetty', name: 'jetty-webapp', version: jettyVersion
+    compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version: jettyVersion
+}
