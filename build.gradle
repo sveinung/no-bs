@@ -1,6 +1,8 @@
 apply plugin: 'java'
+apply plugin: 'application'
 
 sourceCompatibility = 1.7
+mainClassName = 'nobs.Main'
 
 repositories {
     mavenCentral()
@@ -12,3 +14,4 @@ dependencies {
     compile group: 'org.eclipse.jetty', name: 'jetty-webapp', version: jettyVersion
     compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version: jettyVersion
 }
+
