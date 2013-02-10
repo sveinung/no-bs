@@ -9,8 +9,8 @@ repositories {
 }
 
 project.ext {
-    jettyVersion = '7.2.2.v20101205'
-    javaxWsRsVersion = '2.0-m15'
+    jettyVersion = '8.0.1.v20110908'
+    javaxWsRsVersion = '1.1.1'
     jerseyVersion = '1.17'
 }
 
@@ -19,9 +19,11 @@ dependencies {
     compile group: 'org.eclipse.jetty', name: 'jetty-webapp', version: project.jettyVersion
     compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version: project.jettyVersion
 
-    compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: project.javaxWsRsVersion
+    compile group: 'javax.ws.rs', name: 'jsr311-api', version: project.javaxWsRsVersion
 
+    compile group: 'com.sun.jersey', name: 'jersey-servlet', version: project.jerseyVersion
     compile group: 'com.sun.jersey', name: 'jersey-server', version: project.jerseyVersion
+    compile group: 'com.sun.jersey', name: 'jersey-core', version: project.jerseyVersion
     compile group: 'com.sun.jersey', name: 'jersey-json', version: project.jerseyVersion
 }
 
