@@ -51,7 +51,7 @@ public class Main {
 
     private static ServletContextHandler getJerseyResourceHandler(Server srv) {
         ServletHolder sh = new ServletHolder(ServletContainer.class);
-        sh.setInitParameter("com.sun.jersey.config.property.packages", "nobs.products");
+        sh.setInitParameter("javax.ws.rs.Application", "nobs.MyApplication");
 
         ServletContextHandler context = new ServletContextHandler(srv, "/", ServletContextHandler.SESSIONS);
         context.setContextPath("/");
