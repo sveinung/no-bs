@@ -1,22 +1,23 @@
 package nobs.library;
 
 import nobs.book.Book;
+import nobs.book.BookID;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Library {
-    private List<Book> books;
+    private List<BookID> books;
 
     public Library() {
         this.books = new ArrayList<>();
     }
 
-    public Library(List<Book> books) {
+    public Library(List<BookID> books) {
         this.books = books;
     }
 
-    public List<Book> getBooks() {
+    public List<BookID> getBooks() {
         return books;
     }
 }

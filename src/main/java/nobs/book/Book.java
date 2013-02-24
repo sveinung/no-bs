@@ -9,6 +9,11 @@ public class Book {
         this.title = title;
     }
 
+    public Book() {
+        this.author = null;
+        this.title = null;
+    }
+
     public String getAuthor() {
         return author;
     }

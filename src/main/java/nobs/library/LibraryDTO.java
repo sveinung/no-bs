@@ -1,27 +1,26 @@
 package nobs.library;
 
-import nobs.book.Book;
-import nobs.book.BookDTO;
+import nobs.book.BookID;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LibraryDTO {
 
-    private List<BookDTO> books;
+    private List<Integer> books;
 
     public LibraryDTO(Library library) {
         books = new ArrayList<>();
-        for (Book book : library.getBooks()) {
-            books.add(new BookDTO(book));
+        for (BookID bookID : library.getBooks()) {
+            books.add(bookID.getValue());
         }
     }
 
-    public List<BookDTO> getBooks() {
+    public List<Integer> getBooks() {
         return books;
     }
 
-    public void setBooks(List<BookDTO> books) {
+    public void setBooks(List<Integer> books) {
         this.books = books;
     }
 }

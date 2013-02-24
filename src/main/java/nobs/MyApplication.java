@@ -1,5 +1,7 @@
 package nobs;
 
+import nobs.book.BookRepository;
+import nobs.book.BookResource;
 import nobs.library.LibraryRepository;
 import nobs.library.LibraryResource;
 
@@ -15,6 +17,7 @@ public class MyApplication extends Application {
         HashSet<Object> resources = new HashSet<>();
 
         resources.add(new LibraryResource(new LibraryRepository()));
+        resources.add(new BookResource(new BookRepository()));
 
         return resources;
     }
