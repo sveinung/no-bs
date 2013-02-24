@@ -10,6 +10,8 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.thread.QueuedThreadPool;
 
+import java.util.HashMap;
+
 public class Main {
     public static void main(String[] args) {
         try {
@@ -51,7 +53,11 @@ public class Main {
 
     private static ServletContextHandler getJerseyResourceHandler(Server srv) {
         ServletHolder sh = new ServletHolder(ServletContainer.class);
-        sh.setInitParameter("javax.ws.rs.Application", MyApplication.class.getCanonicalName());
+
+        HashMap<String, String> initParameters = new HashMap<String, String>();
+        initParameters.put("javax.ws.rs.Application", MyApplication.class.getCanonicalName());
+        initParameters.put("com.sun.jersey.api.json.POJOMappingFeature", "true");
+        sh.setInitParameters(initParameters);
 
         ServletContextHandler context = new ServletContextHandler(srv, "/", ServletContextHandler.SESSIONS);
         context.addServlet(sh, "/*");

@@ -1,7 +1,7 @@
 package nobs;
 
-import nobs.products.ProductRepository;
-import nobs.products.ProductResource;
+import nobs.library.LibraryRepository;
+import nobs.library.LibraryResource;
 
 import javax.ws.rs.core.Application;
 import java.util.HashSet;
@@ -12,10 +12,10 @@ public class MyApplication extends Application {
 
     @Override
     public Set<Object> getSingletons() {
-        HashSet<Object> objects = new HashSet<Object>();
+        HashSet<Object> resources = new HashSet<>();
 
-        objects.add(new ProductResource(new ProductRepository()));
+        resources.add(new LibraryResource(new LibraryRepository()));
 
-        return objects;
+        return resources;
     }
 }
