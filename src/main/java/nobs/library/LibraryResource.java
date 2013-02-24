@@ -1,5 +1,7 @@
 package nobs.library;
 
+import nobs.book.BookURIBuilder;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -10,9 +12,11 @@ import javax.ws.rs.core.MediaType;
 public class LibraryResource {
 
     private LibraryRepository libraryRepository;
+    private BookURIBuilder bookURIBuilder;
 
-    public LibraryResource(LibraryRepository libraryRepository) {
+    public LibraryResource(LibraryRepository libraryRepository, BookURIBuilder bookURIBuilder) {
         this.libraryRepository = libraryRepository;
+        this.bookURIBuilder = bookURIBuilder;
     }
 
     @GET
@@ -21,6 +25,6 @@ public class LibraryResource {
     public LibraryDTO getLibrary(@PathParam("id") int libraryId) {
         Library library = libraryRepository.getLibrary(libraryId);
 
-        return new LibraryDTO(library);
+        return new LibraryDTO(library, bookURIBuilder);
     }
 }

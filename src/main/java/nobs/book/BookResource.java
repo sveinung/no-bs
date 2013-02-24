@@ -6,8 +6,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/book")
+@Path(BookResource.BOOK_PATH)
 public class BookResource {
+
+    public static final String BOOK_PATH = "/book";
+    public static final String ID_PATH = "/{id}";
 
     private BookRepository bookRepository;
 
@@ -16,7 +19,7 @@ public class BookResource {
     }
 
     @GET
-    @Path("/{id}")
+    @Path(ID_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     public BookDTO getBook(@PathParam("id") int id) {
         Book book = bookRepository.getBook(new BookID(id));
