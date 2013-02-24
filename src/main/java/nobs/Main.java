@@ -54,7 +54,6 @@ public class Main {
         sh.setInitParameter("javax.ws.rs.Application", MyApplication.class.getCanonicalName());
 
         ServletContextHandler context = new ServletContextHandler(srv, "/", ServletContextHandler.SESSIONS);
-        context.setContextPath("/");
         context.addServlet(sh, "/*");
 
         return context;
