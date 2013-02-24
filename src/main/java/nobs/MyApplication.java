@@ -12,7 +12,7 @@ public class MyApplication extends Application {
 
     @Override
     public Set<Object> getSingletons() {
-        HashSet<Object> objects = new HashSet<Object>();
+        HashSet<Object> objects = new HashSet<>();
 
         objects.add(new ProductResource(new ProductRepository()));
 
