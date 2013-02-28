@@ -1,8 +1,10 @@
 package nobs;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import nobs.book.BookRepository;
 import nobs.book.BookResource;
 import nobs.book.BookURIBuilder;
+import nobs.library.LibraryExcelMapper;
 import nobs.library.LibraryRepository;
 import nobs.library.LibraryResource;
 
@@ -17,10 +19,13 @@ public class MyApplication extends Application {
     public Set<Object> getSingletons() {
         HashSet<Object> resources = new HashSet<>();
 
-        resources.add(new LibraryResource(new LibraryRepository(),
-                                          new BookURIBuilder()));
+        BookRepository bookRepository = new BookRepository();
 
-        resources.add(new BookResource(new BookRepository()));
+        resources.add(new LibraryResource(new LibraryRepository(),
+                                          new BookURIBuilder(),
+                                          new LibraryExcelMapper(bookRepository)));
+
+        resources.add(new BookResource(bookRepository));
 
         return resources;
     }

@@ -25,5 +25,7 @@ dependencies {
     compile group: 'com.sun.jersey', name: 'jersey-server', version: project.jerseyVersion
     compile group: 'com.sun.jersey', name: 'jersey-core', version: project.jerseyVersion
     compile group: 'com.sun.jersey', name: 'jersey-json', version: project.jerseyVersion
+
+    compile group: 'org.apache.poi', name: 'poi', version: '3.9'
 }
 
