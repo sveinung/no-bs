@@ -37,10 +37,13 @@ public class LibraryResource {
     @GET
     @Path("/{id}/excel")
     @Produces("application/vnd.ms-excel")
-    public StreamingOutput exportToExcel(@PathParam("id") int libraryId) {
+    public Response exportToExcel(@PathParam("id") int libraryId) {
         Library library = libraryRepository.getLibrary(libraryId);
 
-        return libraryExcelMapper.toExcel(library);
+        return Response.ok()
+                       .entity(libraryExcelMapper.toExcel(library))
+                       .header("Content-Disposition", "attachment; filename=library.xls")
+                       .build();
     }
 
 }
