@@ -8,6 +8,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.StreamingOutput;
 
 @Path("/library")
 public class LibraryResource {
@@ -36,12 +37,10 @@ public class LibraryResource {
     @GET
     @Path("/{id}/excel")
     @Produces("application/vnd.ms-excel")
-    public Response exportToExcel(@PathParam("id") int libraryId) {
+    public StreamingOutput exportToExcel(@PathParam("id") int libraryId) {
         Library library = libraryRepository.getLibrary(libraryId);
 
-        return Response.ok()
-                       .entity(libraryExcelMapper.toExcel(library))
-                       .build();
+        return libraryExcelMapper.toExcel(library);
     }
 
 }

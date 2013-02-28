@@ -9,10 +9,9 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.StreamingOutput;
+import java.io.*;
 
 public class LibraryExcelMapper {
 
@@ -22,14 +21,10 @@ public class LibraryExcelMapper {
         this.bookRepository = bookRepository;
     }
 
-    public File toExcel(Library library) {
-        File excelFile = null;
+    public StreamingOutput toExcel(Library library) {
+        final ByteArrayOutputStream fos = new ByteArrayOutputStream();
 
         try {
-            excelFile = new File("file.xls");
-
-            FileOutputStream fos = new FileOutputStream(excelFile);
-
             Workbook workbook = new HSSFWorkbook();
 
             Sheet sheet = workbook.createSheet();
@@ -58,6 +53,11 @@ public class LibraryExcelMapper {
             e.printStackTrace();
         }
 
-        return excelFile;
+        return new StreamingOutput() {
+            @Override
+            public void write(OutputStream output) throws IOException, WebApplicationException {
+                output.write(fos.toByteArray());
+            }
+        };
     }
 }
