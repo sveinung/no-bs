@@ -1,6 +1,5 @@
 package nobs;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
 import nobs.book.BookRepository;
 import nobs.book.BookResource;
 import nobs.book.BookURIBuilder;

@@ -29,17 +29,13 @@ public class LibraryExcelMapper {
 
             Sheet sheet = workbook.createSheet();
 
-            int rowNumber = 0;
+            addHeaders(sheet);
+
+            int rowNumber = 1;
             for (BookID bookID : library.getBooks()) {
                 Book book = this.bookRepository.getBook(bookID);
 
-                Row row = sheet.createRow(rowNumber);
-
-                Cell authorCell = row.createCell(0);
-                authorCell.setCellValue(book.getAuthor());
-
-                Cell titleCell = row.createCell(1);
-                titleCell.setCellValue(book.getTitle());
+                addBookRows(sheet, rowNumber, book);
 
                 rowNumber++;
             }
@@ -59,5 +55,25 @@ public class LibraryExcelMapper {
                 output.write(fos.toByteArray());
             }
         };
+    }
+
+    private void addBookRows(Sheet sheet, int rowNumber, Book book) {
+        Row row = sheet.createRow(rowNumber);
+
+        Cell authorCell = row.createCell(0);
+        authorCell.setCellValue(book.getAuthor());
+
+        Cell titleCell = row.createCell(1);
+        titleCell.setCellValue(book.getTitle());
+    }
+
+    private void addHeaders(Sheet sheet) {
+        Row headers = sheet.createRow(0);
+
+        Cell authorHeader = headers.createCell(0);
+        authorHeader.setCellValue("Author");
+
+        Cell titleHeader = headers.createCell(1);
+        titleHeader.setCellValue("Title");
     }
 }
