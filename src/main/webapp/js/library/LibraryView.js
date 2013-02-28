@@ -5,8 +5,13 @@ var LibraryView = (function(_, $) {
     };
 
     _.extend(LibraryView.prototype, {
+        url: function() {
+            var libraryId = this.el.find(".library-input").val();
+            return "http://localhost:8080/library/" + libraryId;
+        },
+
         getLibrary: function() {
-            $.ajax('http://localhost:8080/library/2', {
+            $.ajax(this.url(), {
                 accepts: {
                     json: 'application/json'
                 }
