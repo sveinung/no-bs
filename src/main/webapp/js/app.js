@@ -1,7 +1,8 @@
-(function($, LibraryView) {
+(function($, LibraryView, LibraryRepository) {
     $(function() {
         var libraryView = new LibraryView({
-            el: $(".library")
+            el: $(".library"),
+            libraryRepository: new LibraryRepository()
         });
     });
-}(jQuery, LibraryView));
+}(jQuery, LibraryView, LibraryRepository));
