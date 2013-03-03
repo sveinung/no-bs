@@ -3,4 +3,6 @@
 *.iml
 build/
 .DS_Store
+.vagrant
+*.swp
 
