@@ -5,11 +5,11 @@ import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerList;
-import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.server.nio.SelectChannelConnector;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.thread.QueuedThreadPool;
+import org.eclipse.jetty.webapp.WebAppContext;
 
 import java.util.HashMap;
 
@@ -24,7 +24,7 @@ public class Main {
             srv.setConnectors(getConnectors());
 
             HandlerList handlers = new HandlerList();
-            handlers.addHandler(getStaticPages());
+            handlers.addHandler(getWebAppContext());
             handlers.addHandler(getJerseyResourceHandler(srv));
 
             srv.setHandler(handlers);
@@ -66,11 +66,8 @@ public class Main {
         return context;
     }
 
-    private static Handler getStaticPages() {
-        ResourceHandler resourceHandler = new ResourceHandler();
-        resourceHandler.setDirectoriesListed(true);
-        resourceHandler.setWelcomeFiles(new String[]{"index.html"});
-        resourceHandler.setResourceBase("src/main/webapp");
-        return resourceHandler;
+    private static Handler getWebAppContext() {
+        String pathToJar = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        return new WebAppContext(pathToJar, "/");
     }
 }
