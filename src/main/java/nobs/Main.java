@@ -67,7 +67,12 @@ public class Main {
     }
 
     private static Handler getWebAppContext() {
-        String pathToJar = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-        return new WebAppContext(pathToJar, "/");
+        String webApp;
+        if ("true".equals(System.getProperty("dev"))) {
+            webApp = "src/main/webapp";
+        } else {
+            webApp = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        }
+        return new WebAppContext(webApp, "/");
     }
 }
