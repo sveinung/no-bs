@@ -27,3 +27,11 @@ dependencies {
     compile group: 'com.sun.jersey', name: 'jersey-json', version: project.jerseyVersion
 }
 
+jar {
+    manifest {
+        attributes("Main-Class": "nobs.Main")
+    }
+    from files("src/main/webapp")
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
