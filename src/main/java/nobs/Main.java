@@ -2,6 +2,7 @@ package nobs;
 
 import com.sun.jersey.spi.container.servlet.ServletContainer;
 import org.eclipse.jetty.server.Connector;
+import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
@@ -51,10 +52,10 @@ public class Main {
         return new Connector[]{connector};
     }
 
-    private static ServletContextHandler getJerseyResourceHandler(Server srv) {
+    private static Handler getJerseyResourceHandler(Server srv) {
         ServletHolder sh = new ServletHolder(ServletContainer.class);
 
-        HashMap<String, String> initParameters = new HashMap<String, String>();
+        HashMap<String, String> initParameters = new HashMap<>();
         initParameters.put("javax.ws.rs.Application", MyApplication.class.getCanonicalName());
         initParameters.put("com.sun.jersey.api.json.POJOMappingFeature", "true");
         sh.setInitParameters(initParameters);
@@ -65,7 +66,7 @@ public class Main {
         return context;
     }
 
-    private static ResourceHandler getStaticPages() {
+    private static Handler getStaticPages() {
         ResourceHandler resourceHandler = new ResourceHandler();
         resourceHandler.setDirectoriesListed(true);
         resourceHandler.setWelcomeFiles(new String[]{"index.html"});
