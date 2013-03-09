@@ -4,9 +4,7 @@ import com.sun.jersey.spi.container.servlet.ServletContainer;
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.nio.SelectChannelConnector;
-import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.thread.QueuedThreadPool;
 import org.eclipse.jetty.webapp.WebAppContext;
@@ -23,11 +21,7 @@ public class Main {
             srv.setThreadPool(getQueuedThreadPool());
             srv.setConnectors(getConnectors());
 
-            HandlerList handlers = new HandlerList();
-            handlers.addHandler(getWebAppContext());
-            handlers.addHandler(getJerseyResourceHandler(srv));
-
-            srv.setHandler(handlers);
+            srv.setHandler(getWebAppContext());
 
             srv.start();
             srv.join();
@@ -52,20 +46,6 @@ public class Main {
         return new Connector[]{connector};
     }
 
-    private static Handler getJerseyResourceHandler(Server srv) {
-        ServletHolder sh = new ServletHolder(ServletContainer.class);
-
-        HashMap<String, String> initParameters = new HashMap<>();
-        initParameters.put("javax.ws.rs.Application", MyApplication.class.getCanonicalName());
-        initParameters.put("com.sun.jersey.api.json.POJOMappingFeature", "true");
-        sh.setInitParameters(initParameters);
-
-        ServletContextHandler context = new ServletContextHandler(srv, "/", ServletContextHandler.SESSIONS);
-        context.addServlet(sh, "/*");
-
-        return context;
-    }
-
     private static Handler getWebAppContext() {
         String webApp;
         if ("true".equals(System.getProperty("dev"))) {
@@ -73,6 +53,22 @@ public class Main {
         } else {
             webApp = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         }
-        return new WebAppContext(webApp, "/");
+        WebAppContext webAppContext = new WebAppContext(webApp, "/");
+
+        webAppContext.addServlet(getResourceServletHolder(), "/rest/*");
+
+        return webAppContext;
+    }
+
+    private static ServletHolder getResourceServletHolder() {
+        ServletHolder resourceServletHolder = new ServletHolder(ServletContainer.class);
+
+        HashMap<String, String> initParameters = new HashMap<>();
+        initParameters.put("javax.ws.rs.Application", MyApplication.class.getCanonicalName());
+        initParameters.put("com.sun.jersey.api.json.POJOMappingFeature", "true");
+
+        resourceServletHolder.setInitParameters(initParameters);
+
+        return resourceServletHolder;
     }
 }

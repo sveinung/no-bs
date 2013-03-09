@@ -1,6 +1,6 @@
 var LibraryRepository = (function($, _) {
     var LibraryRepository = function() {
-        this.urlRoot = "http://localhost:8080/library/";
+        this.urlRoot = "http://localhost:8080/rest/library/";
     }
 
     _.extend(LibraryRepository.prototype, {
