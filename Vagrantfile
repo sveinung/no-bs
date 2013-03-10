@@ -6,4 +6,6 @@ Vagrant::Config.run do |config|
   config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-1204-x64.box"
   
   config.vm.network :hostonly, "10.0.2.11"
+  config.vm.forward_port 8080, 8585
+  config.vm.provision :shell, :path => "infrastructure/install.sh"
 end
