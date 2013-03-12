@@ -1,9 +1,8 @@
 #!/bin/sh
 
-APP_NAME=no-bs
-APP_LOCATION="/opt/${APP_NAME}"
+. /opt/no-bs/lib/daemon-functions.sh
+
 LOGS=/var/log/${APP_NAME}
-PID_FILE="/var/run/${APP_NAME}.pid"
 
 case "$1" in
   start)
