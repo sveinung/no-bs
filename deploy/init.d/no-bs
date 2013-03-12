@@ -15,8 +15,13 @@ case "$1" in
     ;;
   stop)
     echo "Stopping No BS..."
-    PID=`cat ${PID_FILE}`
-    echo "Stopping app running with ${PID}"
-    test -z $PID || kill $PID
+    if [ -f $PID_FILE ]; then
+      PID=`cat ${PID_FILE}`
+      echo "Stopping app running with ${PID}"
+      test -z $PID || kill $PID
+      sudo rm $PID_FILE
+    else
+      echo "Already stopped"
+    fi
     ;;
 esac

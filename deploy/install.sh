@@ -10,6 +10,13 @@ APP_LIB_DIR="${APP_LOCATION}/lib"
 echo "Create app folder"
 sudo mkdir -p $APP_LOCATION
 
+echo "Installing service script..."
+sudo cp /vagrant/deploy/init.d/no-bs /etc/init.d/
+sudo mkdir -p $APP_LIB_DIR
+sudo cp deploy/daemon-functions.sh $APP_LIB_DIR/
+
+sudo service no-bs stop
+
 echo "Installing app..."
 if [ -f $APP_JAR ]; then
   sudo cp $APP_JAR $APP_LOCATION
@@ -18,12 +25,8 @@ else
   return 1
 fi
 
-echo "Installing service script..."
-sudo cp /vagrant/deploy/init.d/no-bs /etc/init.d/
-
-sudo mkdir -p $APP_LIB_DIR
-sudo cp deploy/daemon-functions.sh $APP_LIB_DIR/
+sleep 5
+sudo service no-bs start
 
 popd
 
-exit 0
