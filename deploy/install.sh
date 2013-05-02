@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source deploy/daemon-functions.sh
+source deploy/constants.sh
 
 APP_JAR="${APP_NAME}.jar"
 APP_LIB_DIR="${APP_LOCATION}/lib"
@@ -11,7 +11,7 @@ sudo mkdir -p $APP_LOCATION
 echo "Installing service script..."
 sudo cp deploy/init.d/no-bs /etc/init.d/
 sudo mkdir -p $APP_LIB_DIR
-sudo cp deploy/daemon-functions.sh $APP_LIB_DIR/
+sudo cp deploy/constants.sh $APP_LIB_DIR/
 
 sudo service no-bs stop
 

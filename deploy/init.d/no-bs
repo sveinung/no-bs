@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. /opt/no-bs/lib/daemon-functions.sh
+. /opt/no-bs/lib/constants.sh
 
 LOGS=/var/log/${APP_NAME}
 
