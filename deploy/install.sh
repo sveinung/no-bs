@@ -1,17 +1,15 @@
 #!/bin/bash
 
-pushd /vagrant/
-
 source deploy/daemon-functions.sh
 
-APP_JAR="/vagrant/build/libs/${APP_NAME}.jar"
+APP_JAR="${APP_NAME}.jar"
 APP_LIB_DIR="${APP_LOCATION}/lib"
 
 echo "Create app folder"
 sudo mkdir -p $APP_LOCATION
 
 echo "Installing service script..."
-sudo cp /vagrant/deploy/init.d/no-bs /etc/init.d/
+sudo cp deploy/init.d/no-bs /etc/init.d/
 sudo mkdir -p $APP_LIB_DIR
 sudo cp deploy/daemon-functions.sh $APP_LIB_DIR/
 
@@ -27,6 +25,4 @@ fi
 
 sleep 5
 sudo service no-bs start
-
-popd
 

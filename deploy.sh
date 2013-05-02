@@ -16,6 +16,7 @@ rsync -e "ssh -o 'ControlPath=${SSH_SOCKET}'" \
     --delete \
     --executability \
     deploy/ $HOST:/home/$USER/deploy/
+ssh -o ControlPath=$SSH_SOCKET -t $USER@$HOST "deploy/install.sh"
 
 ssh -S $SSH_SOCKET -O exit $USER@$HOST
 
