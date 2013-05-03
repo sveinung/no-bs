@@ -2,7 +2,7 @@
     $(function() {
         var libraryView = new LibraryView({
             el: $(".library"),
-            libraryRepository: new LibraryRepository()
+            libraryRepository: LibraryRepository()
         });
     });
 }(jQuery, LibraryView, LibraryRepository));

@@ -1,19 +1,21 @@
 var LibraryRepository = (function($, _) {
     var LibraryRepository = function() {
-        this.urlRoot = "http://localhost:8080/rest/library/";
-    }
+        var urlRoot = "http://localhost:8080/rest/library/";
 
-    _.extend(LibraryRepository.prototype, {
-        getLibrary: function(libraryId) {
-            var libraryPromise = $.ajax(this.urlRoot + libraryId, {
+        var getLibrary = function(libraryId) {
+            var libraryPromise = $.ajax(urlRoot + libraryId, {
                 accepts: {
                     json: 'application/json'
                 }
             });
 
             return libraryPromise;
+        };
+
+        return {
+            getLibrary: getLibrary
         }
-    });
+    }
 
     return LibraryRepository;
 }(jQuery, _));
