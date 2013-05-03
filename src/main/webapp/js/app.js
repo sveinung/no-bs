@@ -1,6 +1,6 @@
 (function($, LibraryView, LibraryRepository) {
     $(function() {
-        var libraryView = new LibraryView({
+        var libraryView = LibraryView({
             el: $(".library"),
             libraryRepository: LibraryRepository()
         });
