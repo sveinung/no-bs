@@ -1,0 +1,9 @@
+.input {
+    width: 20em;
+    border: 0.2em solid #c0c0c0;
+}
+
+.input:focus {
+    outline-width: 0;
+    border: 0.2em solid #2288ee;
+}
