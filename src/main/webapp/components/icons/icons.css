@@ -1,0 +1,13 @@
+.icon {
+    background-image: url('./glyphicons-halflings.png');
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+}
+
+.icon-hover-only .icon { display: none; }
+.icon-hover-only:hover .icon { display: inline-block; }
+
+.icon-plus {
+    background-position: -405px -93px;
+}

@@ -12,14 +12,19 @@
     <link rel="stylesheet" href="components/form.css">
     <link rel="stylesheet" href="components/button.css">
     <link rel="stylesheet" href="components/grid.css">
+    <link rel="stylesheet" href="components/icons/icons.css">
+
+    <link rel="stylesheet" href="modules/library/libraryView.css">
 
     <script data-main="app" src="vendor/require-2.1.5.js"></script>
 </head>
 <body>
-    <header><h1>No BS</h1></header>
+    <header id="header"><h1>No BS</h1></header>
     <div class="content">
         <section class="library">
-            <h1 class="cell cell-2">Your library</h1>
+            <header class="cell cell-2">
+                <h3 class="icon-hover-only"><span>Your library</span> <a><i class="icon icon-plus"></i></a></h3>
+            </header>
             <div class="cell cell-2">
                 <ul class="books"></ul>
                 <article></article>
