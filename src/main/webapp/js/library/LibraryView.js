@@ -1,4 +1,5 @@
-var LibraryView = (function(_, $) {
+define(function() {
+
     var LibraryView = function(options) {
         var el = options.el;
         var libraryRepository = options.libraryRepository;
@@ -21,4 +22,4 @@ var LibraryView = (function(_, $) {
     };
 
     return LibraryView;
-}(_, jQuery));
+});

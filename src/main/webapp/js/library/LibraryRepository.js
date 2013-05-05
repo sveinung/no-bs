@@ -1,4 +1,5 @@
-var LibraryRepository = (function($, _) {
+define(function() {
+    
     var LibraryRepository = function() {
         var urlRoot = "http://localhost:8080/rest/library/";
 
@@ -18,4 +19,4 @@ var LibraryRepository = (function($, _) {
     }
 
     return LibraryRepository;
-}(jQuery, _));
+});

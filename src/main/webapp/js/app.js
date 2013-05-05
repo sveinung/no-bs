@@ -1,4 +1,5 @@
-(function($, LibraryView, LibraryRepository) {
+require(['library/LibraryView', 'library/LibraryRepository'], function(LibraryView, LibraryRepository) {
+
     $(function() {
         var libraryView = LibraryView({
             el: $(".library"),
@@ -7,4 +8,4 @@
         });
         libraryView.render();
     });
-}(jQuery, LibraryView, LibraryRepository));
+});
