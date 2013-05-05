@@ -3,12 +3,8 @@ var LibraryView = (function(_, $) {
         var el = options.el;
         var libraryRepository = options.libraryRepository;
 
-        var libraryId = function() {
-            return el.find(".library-input").val();
-        };
-
         var getLibrary = function() {
-            libraryRepository.getLibrary(libraryId()).done(libraryReceived);
+            libraryRepository.getLibrary(options.libraryId).done(libraryReceived);
         };
 
         var libraryReceived = function(response) {
@@ -19,7 +15,7 @@ var LibraryView = (function(_, $) {
             });
         };
 
-        el.find(".retrieve-books").click(getLibrary);
+        getLibrary();
     };
 
     return LibraryView;
