@@ -1,5 +1,5 @@
 define(function() {
-    
+
     var LibraryRepository = function() {
         var urlRoot = "http://localhost:8080/rest/library/";
 

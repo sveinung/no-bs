@@ -1,4 +1,6 @@
-define(function() {
+define(function(require) {
+
+    var _ = require('underscore');
 
     var LibraryView = function(options) {
         var el = options.el;
