@@ -15,7 +15,9 @@ var LibraryView = (function(_, $) {
             });
         };
 
-        getLibrary();
+        return {
+            render: getLibrary
+        }
     };
 
     return LibraryView;

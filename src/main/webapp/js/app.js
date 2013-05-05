@@ -5,5 +5,6 @@
             libraryId: 1,
             libraryRepository: LibraryRepository()
         });
+        libraryView.render();
     });
 }(jQuery, LibraryView, LibraryRepository));
