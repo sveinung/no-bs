@@ -2,3 +2,11 @@ html {
     font-family: 'Avenir Next W10 Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     background-color: #eee;
 }
+
+header {
+    background-color: #28e;
+    padding: 0.67em 10%;
+    color: #fff;
+}
+
+header h1 { margin: 0; }
