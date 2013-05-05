@@ -1,4 +1,4 @@
-require(['library/LibraryView', 'library/LibraryRepository'], function(LibraryView, LibraryRepository) {
+require(['library/libraryView', 'library/libraryRepository'], function(LibraryView, LibraryRepository) {
 
     $(function() {
         var libraryView = LibraryView({
