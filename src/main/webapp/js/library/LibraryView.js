@@ -11,7 +11,7 @@ var LibraryView = (function(_, $) {
             el.find(".books").empty();
 
             _.each(response.books, function(book) {
-                el.find(".books").append("<li>" + book + "</li>");
+                el.find(".books").append("<li>" + book.title + "</li>");
             });
         };
 

@@ -1,28 +1,28 @@
 package nobs.library;
 
-import nobs.book.BookID;
+import nobs.book.BookShort;
+import nobs.book.BookShortDTO;
 import nobs.book.BookURIBuilder;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LibraryDTO {
 
-    private List<URI> books;
+    private List<BookShortDTO> books;
 
     public LibraryDTO(Library library, BookURIBuilder bookURIBuilder) {
         books = new ArrayList<>();
-        for (BookID bookID : library.getBooks()) {
-            books.add(bookURIBuilder.build(bookID));
+        for (BookShort book : library.getBooks()) {
+            books.add(new BookShortDTO(book.getTitle(), bookURIBuilder.build(book.getId())));
         }
     }
 
-    public List<URI> getBooks() {
+    public List<BookShortDTO> getBooks() {
         return books;
     }
 
-    public void setBooks(List<URI> books) {
+    public void setBooks(List<BookShortDTO> books) {
         this.books = books;
     }
 }
