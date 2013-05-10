@@ -2,6 +2,7 @@
     width: 20em;
     height: 2.5em;
     border: 0.2em solid #ccc;
+    margin-bottom: 0.5em;
 }
 
 .input:focus {

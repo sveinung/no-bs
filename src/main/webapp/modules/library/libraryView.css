@@ -1,5 +1,24 @@
-.library header { position: relative; }
-.library header a {
-    position: absolute;
+.library { position: relative; }
+
+.library-header { position: relative; }
+
+.library-controls { position: absolute; }
+
+.library-controls .add-book {
     right: 0.5em;
+    position: absolute;
+}
+
+.library-content {
+    position: absolute;
+    left: 20%;
+}
+
+.library-content .book-input-form {
+    display: none;
+    position: relative;
+}
+
+.submit-button {
+    float: right;
 }

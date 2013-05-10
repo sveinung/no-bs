@@ -6,6 +6,11 @@ define(function(require) {
         var el = options.el;
         var libraryRepository = options.libraryRepository;
 
+        el.find(".add-book").click(function(event) {
+            event.preventDefault();
+            el.find(".book-input-form").show();
+        });
+
         var getLibrary = function() {
             libraryRepository.getLibrary(options.libraryId).done(libraryReceived);
         };
