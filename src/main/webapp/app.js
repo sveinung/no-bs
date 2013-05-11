@@ -2,7 +2,7 @@ requirejs.config({
     paths: {
         'jquery': 'vendor/jquery-1.9.1',
         'underscore': 'vendor/underscore',
-        'text': 'vendor/require/text',
+        'text': 'components/requirejs-text/text',
         'mustache': 'vendor/mustache'
     },
     shim: {

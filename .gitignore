@@ -6,3 +6,4 @@ build/
 .vagrant
 *.swp
 node_modules/
+src/main/webapp/components/
