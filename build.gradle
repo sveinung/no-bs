@@ -27,6 +27,10 @@ dependencies {
     compile group: 'com.sun.jersey', name: 'jersey-json', version: project.jerseyVersion
 }
 
+task frontendBuild(type:Exec) {
+    commandLine './make.js'
+}
+
 jar {
     manifest {
         attributes("Main-Class": mainClassName)
