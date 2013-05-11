@@ -1,15 +1,12 @@
 define(function(require) {
 
-    var _ = require('underscore');
+    var _ = require('underscore'),
+        template = require('text!./libraryView.mustache'),
+        mustache = require('mustache');
 
     var LibraryView = function(options) {
         var el = options.el;
         var libraryRepository = options.libraryRepository;
-
-        el.find(".add-book").click(function(event) {
-            event.preventDefault();
-            el.find(".book-input-form").show();
-        });
 
         var getLibrary = function() {
             libraryRepository.getLibrary(options.libraryId).done(libraryReceived);
@@ -23,8 +20,19 @@ define(function(require) {
             });
         };
 
+        var render = function() {
+            el.html(mustache.render(template));
+
+            el.find(".add-book").click(function(event) {
+                event.preventDefault();
+                el.find(".book-input-form").show();
+            });
+
+            getLibrary();
+        };
+
         return {
-            render: getLibrary
+            render: render
         }
     };
 
