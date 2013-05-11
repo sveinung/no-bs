@@ -36,6 +36,7 @@ jar {
         attributes("Main-Class": mainClassName)
     }
     from files("src/main/webapp")
+    from files("build/frontend-build")
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 }
 jar.dependsOn frontendBuild
