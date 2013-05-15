@@ -1,5 +1,6 @@
 define(function(require) {
 
+    require('css!./libraryView.css');
     var _ = require('underscore'),
         template = require('text!./libraryView.mustache'),
         mustache = require('mustache');
