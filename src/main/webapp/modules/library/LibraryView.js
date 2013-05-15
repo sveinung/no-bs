@@ -26,7 +26,7 @@ define(function(require) {
 
             el.find(".add-book").click(function(event) {
                 event.preventDefault();
-                el.find(".book-input-form").show();
+                el.find(".book-input-form").removeClass("hide");
             });
 
             getLibrary();

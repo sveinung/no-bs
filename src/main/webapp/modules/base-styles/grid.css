@@ -1,5 +1,4 @@
-.cell {
-}
+.cell { float: left; }
 
 .cell-1 { width: 10%; }
 .cell-2 { width: 20%; }
