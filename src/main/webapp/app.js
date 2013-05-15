@@ -12,6 +12,11 @@ requirejs.config({
         'underscore': {
             exports: '_'
         }
+    },
+    map: {
+        '*': {
+            'css': 'components/require-css/css'
+        }
     }
 })
 
