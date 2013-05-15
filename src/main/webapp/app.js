@@ -22,6 +22,8 @@ requirejs.config({
 
 define(function(require) {
 
+    require('modules/base-styles/base-styles');
+
     var $ = require('jquery');
 
     var LibraryView = require('modules/library/libraryView');
