@@ -1,9 +1,9 @@
 define(function(require) {
 
-    require('css!./libraryView.css');
     var _ = require('underscore'),
         template = require('text!./libraryView.mustache'),
-        mustache = require('mustache');
+        mustache = require('mustache'),
+        AddBookView = require('./books/addBookView');
 
     var LibraryView = function(options) {
         var el = options.el;
@@ -14,20 +14,27 @@ define(function(require) {
         };
 
         var libraryReceived = function(response) {
-            el.find(".books").empty();
+            el.find('.books').empty();
 
             _.each(response.books, function(book) {
-                el.find(".books").append("<li>" + book.title + "</li>");
+                el.find('.books').append('<li>' + book.title + '</li>');
             });
+        };
+
+        var addBookClicked = function(event) {
+            event.preventDefault();
+
+            el.find('.book-input-form').removeClass('hide');
+            var addBookView = AddBookView({
+                el: el.find('.book-input-form')
+            });
+            addBookView.render();
         };
 
         var render = function() {
             el.html(mustache.render(template));
 
-            el.find(".add-book").click(function(event) {
-                event.preventDefault();
-                el.find(".book-input-form").removeClass("hide");
-            });
+            el.find('.add-book').click(addBookClicked);
 
             getLibrary();
         };
