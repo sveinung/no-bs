@@ -9,6 +9,7 @@
   "dependencies": {
     "requirejs": "~2.1.6",
     "requirejs-text": "~2.0.6",
-    "require-css": "~0.0.6"
+    "require-css": "~0.0.6",
+    "rivets": "~0.5.4"
   }
 }

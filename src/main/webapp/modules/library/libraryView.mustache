@@ -2,7 +2,11 @@
     <header class="library-header">
         <h3><span>Your library</span> <a href="#" class="add-book"><i class="icon icon-plus"></i></a></h3>
     </header>
-    <ul class="books"></ul>
+    <ul class="books">
+        <li data-each-book="books">
+            <span data-text="book:title"></span>
+        </li>
+    </ul>
 </div>
 <div class="library-content">
     <form class="book-input-form form box cell cell-3 hide"></form>

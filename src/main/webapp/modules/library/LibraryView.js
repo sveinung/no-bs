@@ -3,7 +3,8 @@ define(function(require) {
     var _ = require('underscore'),
         template = require('text!./libraryView.mustache'),
         renderTemplate = require('base/renderTemplate'),
-        AddBookView = require('./books/addBookView');
+        AddBookView = require('./books/addBookView'),
+        rivets = require('rivets');
 
     var LibraryView = function(options) {
         var el = options.el;
@@ -14,11 +15,7 @@ define(function(require) {
         };
 
         var libraryReceived = function(response) {
-            el.find('.books').empty();
-
-            _.each(response.books, function(book) {
-                el.find('.books').append('<li>' + book.title + '</li>');
-            });
+            rivets.bind(el.find('.books'), { books: response.books });
         };
 
         var addBookClicked = function(event) {

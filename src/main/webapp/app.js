@@ -4,6 +4,7 @@ requirejs.config({
         'underscore': 'vendor/underscore',
         'text': 'components/requirejs-text/text',
         'mustache': 'vendor/mustache',
+        'rivets': 'components/rivets/dist/rivets',
         'base': 'modules/base'
     },
     shim: {
@@ -25,12 +26,26 @@ define(function(require) {
 
     require('modules/base-styles/base-styles');
 
-    var $ = require('jquery');
+    var $ = require('jquery'),
+        rivets = require('rivets');
 
     var LibraryView = require('modules/library/libraryView');
     var LibraryRepository = require('modules/library/libraryRepository');
 
     $(function() {
+        rivets.configure({
+            adapter: {
+                preloadData: false,
+                subscribe: function(obj, keypath, callback) {
+                    console.log("subscribe: ", obj, keypath, callback);
+                },
+                read: function(obj, keypath) {
+                    console.log("read: ", obj, keypath);
+                    return obj;
+                }
+            }
+        });
+
         var libraryView = LibraryView({
             el: $(".library"),
             libraryId: 1,
