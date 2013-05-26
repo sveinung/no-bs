@@ -2,7 +2,7 @@ define(function(require) {
 
     var _ = require('underscore'),
         template = require('text!./libraryView.mustache'),
-        mustache = require('mustache'),
+        renderTemplate = require('base/renderTemplate'),
         AddBookView = require('./books/addBookView');
 
     var LibraryView = function(options) {
@@ -32,7 +32,7 @@ define(function(require) {
         };
 
         var render = function() {
-            el.html(mustache.render(template));
+            el.html(renderTemplate(template));
 
             el.find('.add-book').click(addBookClicked);
 

@@ -3,7 +3,8 @@ requirejs.config({
         'jquery': 'vendor/jquery-1.9.1',
         'underscore': 'vendor/underscore',
         'text': 'components/requirejs-text/text',
-        'mustache': 'vendor/mustache'
+        'mustache': 'vendor/mustache',
+        'base': 'modules/base'
     },
     shim: {
         'jquery': {
