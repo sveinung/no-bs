@@ -1,5 +1,5 @@
 define(function(require) {
-    require('css!vendor/normalize.css');
+    require('css!components/normalize-css/normalize.css');
 
     require('css!./base.css');
     require('css!./button.css');

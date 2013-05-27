@@ -1,9 +1,9 @@
 requirejs.config({
     paths: {
-        'jquery': 'vendor/jquery-1.9.1',
-        'underscore': 'vendor/underscore',
+        'jquery': 'components/jquery/jquery',
+        'underscore': 'components/underscore/underscore',
         'text': 'components/requirejs-text/text',
-        'mustache': 'vendor/mustache',
+        'mustache': 'components/mustache/mustache',
         'rivets': 'components/rivets/dist/rivets',
         'base': 'modules/base'
     },
