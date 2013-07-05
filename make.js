@@ -15,7 +15,13 @@ var config = path.join('src', 'main', 'config'),
     jsFile = path.join(buildDir, jsFileName);
 
 target.all = function() {
+    target.test();
     target.build();
+};
+
+target.test = function() {
+    section('Running JavaScript tests');
+    npmBin('karma', 'start', 'karma.conf.js', '--browsers PhantomJS', '--single-run');
 };
 
 target.build = function() {
@@ -33,6 +39,11 @@ var npmBin = function(name) {
 
     var res = exec(bin + ' ' + _.rest(arguments).join(' '));
     done(res);
+};
+
+var section = function(header) {
+    echo();
+    echo('    ' + header.bold);
 };
 
 var done = function(res) {

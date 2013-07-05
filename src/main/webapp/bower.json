@@ -16,5 +16,9 @@
     "mustache": "~0.7.2",
     "normalize-css": "~2.1.2",
     "underscore": "~1.4.4"
+  },
+  "devDependencies": {
+    "sinon": "~1.7.3",
+    "jasmine-sinon": "~0.1.0"
   }
 }
