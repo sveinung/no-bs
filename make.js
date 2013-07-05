@@ -5,7 +5,8 @@ require('colors');
 
 var path = require('path'),
     moment = require('moment'),
-    _ = require('underscore');
+    _ = require('underscore'),
+    npmBin = require('npm-bin');
 
 var version = process.env.VERSION || moment().format('YYYYMMDD'),
     buildDir = process.env.OUTPUT_DIR || path.join('build', 'frontend-build');
@@ -21,23 +22,16 @@ target.all = function() {
 
 target.test = function() {
     section('Running JavaScript tests');
-    npmBin('karma', 'start', 'karma.conf.js', '--browsers PhantomJS', '--single-run');
+    bin('karma', ['start', 'karma.conf.js', '--browsers PhantomJS', '--single-run']);
 };
 
 target.build = function() {
     var rjsConfig = path.join(config, 'buildconfig.js');
-    npmBin('r.js', '-o ' + rjsConfig, 'out=' + jsFile);
+    bin('r.js', ['-o ' + rjsConfig, 'out=' + jsFile]);
 };
 
-var npmBin = function(name) {
-    var bin = path.join('node_modules', '.bin', name);
-
-    if (!test('-e', bin)) {
-        echo('Binary does not exist: ' + bin);
-        exit(1);
-    }
-
-    var res = exec(bin + ' ' + _.rest(arguments).join(' '));
+var bin = function(name, args, options) {
+    var res = npmBin(name, args, options)
     done(res);
 };
 
