@@ -25,6 +25,11 @@ target.test = function() {
     bin('karma', ['start', 'karma.conf.js', '--browsers PhantomJS', '--single-run']);
 };
 
+target.browser = function() {
+    section('Running JavaScript tests in browser');
+    bin('karma', ['start', 'karma.conf.js']);
+};
+
 target.build = function() {
     var rjsConfig = path.join(config, 'buildconfig.js');
     bin('r.js', ['-o ' + rjsConfig, 'out=' + jsFile]);
