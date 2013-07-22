@@ -16,7 +16,7 @@ requirejs.config({
         'rivets': 'components/rivets/dist/rivets',
         'base': 'modules/base',
 
-        'sinon': '/base/src/main/webapp/components/sinon/lib/sinon',
+        'sinon': '/base/src/main/webapp/components/sinonjs/sinon',
         'jasmine-sinon': '/base/src/main/webapp/components/jasmine-sinon/lib/jasmine-sinon',
         'responseFaker': 'modules/components/responseFaker'
     },
