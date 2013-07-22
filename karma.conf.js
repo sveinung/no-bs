@@ -10,8 +10,16 @@ files = [
   REQUIRE_ADAPTER,
   { pattern: 'src/main/webapp/modules/**/*.js', included: false },
   { pattern: 'src/main/webapp/modules/**/*.mustache', included: false },
-  { pattern: 'src/main/webapp/components/sinon/lib/sinon.js', included: false },
+  { pattern: 'src/main/webapp/modules/**/*.css', included: false },
+  { pattern: 'src/main/webapp/components/jquery/jquery.js', included: false },
+  { pattern: 'src/main/webapp/components/sinonjs/sinon.js', included: false },
   { pattern: 'src/main/webapp/components/jasmine-sinon/lib/jasmine-sinon.js', included: false },
+  { pattern: 'src/main/webapp/components/requirejs-text/text.js', included: false },
+  { pattern: 'src/main/webapp/components/rivets/dist/rivets.js', included: false },
+  { pattern: 'src/main/webapp/components/underscore/underscore.js', included: false },
+  { pattern: 'src/main/webapp/components/mustache/mustache.js', included: false },
+  { pattern: 'src/main/webapp/components/require-css/css.js', included: false },
+  { pattern: 'src/main/webapp/components/require-css/normalize.js', included: false },
   'src/main/webapp/test-main.js'
 ];
 
