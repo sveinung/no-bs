@@ -41,3 +41,16 @@ requirejs.config({
     callback: window.__karma__.start
 });
 
+require(['rivets'], function(rivets) {
+    rivets.configure({
+        adapter: {
+            preloadData: false,
+            subscribe: function(obj, keypath, callback) {
+            },
+            read: function(obj, keypath) {
+                return obj;
+            }
+        }
+    });
+});
+
