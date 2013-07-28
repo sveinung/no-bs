@@ -14,6 +14,7 @@ files = [
   { pattern: 'src/main/webapp/components/jquery/jquery.js', included: false },
   { pattern: 'src/main/webapp/components/sinonjs/sinon.js', included: false },
   { pattern: 'src/main/webapp/components/jasmine-sinon/lib/jasmine-sinon.js', included: false },
+  { pattern: 'src/main/webapp/components/jasmine-jquery/lib/jasmine-jquery.js', included: true },
   { pattern: 'src/main/webapp/components/requirejs-text/text.js', included: false },
   { pattern: 'src/main/webapp/components/rivets/dist/rivets.js', included: false },
   { pattern: 'src/main/webapp/components/underscore/underscore.js', included: false },

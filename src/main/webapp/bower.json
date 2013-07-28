@@ -20,6 +20,7 @@
   "devDependencies": {
     "sinon": "~1.7.3",
     "jasmine-sinon": "~0.1.0",
-    "sinonjs": "~1.7.1"
+    "sinonjs": "~1.7.1",
+    "jasmine-jquery": "~1.5.5"
   }
 }
