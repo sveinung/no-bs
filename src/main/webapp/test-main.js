@@ -9,15 +9,16 @@ var deps = preIncluded.concat(tests);
 requirejs.config({
     baseUrl: '/base/src/main/webapp',
     paths: {
-        'jquery': 'components/jquery/jquery',
-        'underscore': 'components/underscore/underscore',
-        'text': 'components/requirejs-text/text',
-        'mustache': 'components/mustache/mustache',
-        'rivets': 'components/rivets/dist/rivets',
+        'components': 'bower_components',
+        'jquery': 'bower_components/jquery/jquery',
+        'underscore': 'bower_components/underscore/underscore',
+        'text': 'bower_components/requirejs-text/text',
+        'mustache': 'bower_components/mustache/mustache',
+        'rivets': 'bower_components/rivets/dist/rivets',
         'base': 'modules/base',
 
-        'sinon': '/base/src/main/webapp/components/sinonjs/sinon',
-        'jasmine-sinon': '/base/src/main/webapp/components/jasmine-sinon/lib/jasmine-sinon',
+        'sinon': '/base/src/main/webapp/bower_components/sinonjs/sinon',
+        'jasmine-sinon': '/base/src/main/webapp/bower_components/jasmine-sinon/lib/jasmine-sinon',
         'responseFaker': 'modules/components/responseFaker'
     },
     shim: {

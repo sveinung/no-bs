@@ -6,4 +6,4 @@ build/
 .vagrant
 *.swp
 node_modules/
-src/main/webapp/components/
+src/main/webapp/bower_components/
