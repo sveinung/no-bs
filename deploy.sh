@@ -2,8 +2,13 @@
 
 APP_NAME=no-bs
 
-USER=vagrant
-HOST=localhost
+if [ -z $1 ] || [ -z $2 ]; then
+    echo "Usage: ./deploy.sh user host"
+    exit 1
+fi
+
+USER=$1
+HOST=$2
 PORT=2222
 SSH_SOCKET=~/.ssh/$USER@$HOST
 
