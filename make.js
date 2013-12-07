@@ -15,6 +15,10 @@ var config = path.join('src', 'main', 'config'),
     jsFileName = 'app-' + version + '.js',
     jsFile = path.join(buildDir, jsFileName);
 
+_.extend(process.env, {
+    PHANTOMJS_BIN: 'node_modules/.bin/phantomjs'
+});
+
 target.all = function() {
     target.test();
     target.build();
