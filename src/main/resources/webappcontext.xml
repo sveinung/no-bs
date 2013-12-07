@@ -1,0 +1,2 @@
+<Configure id="webAppContext" class="nobs.NoBsWebAppContext">
+</Configure>
