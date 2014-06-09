@@ -1,35 +1,59 @@
 define(function(require) {
 
     require('css!./addBookView.css');
-    var template = require('text!./addBookView.mustache'),
-        renderTemplate = require('base/renderTemplate'),
-        rivets = require('rivets');
+    var template = require('text!./addBookView.mustache');
+    var BaseView = require('base/view');
+    var DropDownView = require('modules/components/dropdown/dropDownView');
 
-    var AddBookView = function(options) {
-        var el = options.el;
+    var AddBookView = BaseView.extend({
+        events: {
+            'click .cancel-button': 'cancelButtonClicked',
+            'click .submit-button': 'submitButtonClicked'
+        },
 
-        var cancelButtonClicked = function(event) {
-            event.preventDefault();
-            el.addClass('hide');
-        };
-
-        var submitButtonClicked = function(event) {
-            event.preventDefault();
-        };
-
-        var render = function() {
-            el.html(renderTemplate(template));
-
-            rivets.bind(el, {
-                cancel: cancelButtonClicked,
-                submit: submitButtonClicked
+        initialize: function(options) {
+            this.genres = options.genres;
+            this.book = options.book;
+            this.genresDropDown = new DropDownView({
+                defaultOption: "Choose a genre"
             });
-        };
+        },
 
-        return {
-            render: render
-        };
-    };
+        render: function() {
+            this.renderTemplate(template);
+
+            this.genresDropDown.setElement(this.$(".genres-dropdown")).renderWith({
+                options: this.genres.toOptions()
+            });
+
+            return this;
+        },
+
+        cancelButtonClicked: function(event) {
+            event.preventDefault();
+            this.hide();
+        },
+
+        submitButtonClicked: function(event) {
+            event.preventDefault();
+            this.book.save({
+                author: this.$('.author-input').val(),
+                title: this.$('.title-input').val(),
+                genre: this.genresDropDown.selected()
+            });
+            this.hide();
+            this.trigger("book:added", this.book);
+        },
+
+        show: function() {
+            this.book.clear();
+            this.$el.removeClass('hide');
+        },
+
+        hide: function() {
+            this.$el.addClass('hide');
+        }
+    });
 
     return AddBookView;
 });

@@ -20,10 +20,9 @@ public class LibraryResource {
     }
 
     @GET
-    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public LibraryDTO getLibrary(@PathParam("id") int libraryId) {
-        Library library = libraryRepository.getLibrary(libraryId);
+    public LibraryDTO getLibrary() {
+        Library library = libraryRepository.getLibrary();
 
         return new LibraryDTO(library, bookURIBuilder);
     }

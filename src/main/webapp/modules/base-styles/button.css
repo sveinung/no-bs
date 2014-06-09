@@ -2,8 +2,8 @@
     height: 2.5em;
     color: #fff;
     border-width: 0;
-    background-color: #28e;
+    background-color: #666;
     outline-width: 0;
 }
-.btn:focus { background-color: #17d; }
-.btn:active { background-color: #06c; }
+.btn:focus { background-color: #444; }
+.btn:active { background-color: #333; }

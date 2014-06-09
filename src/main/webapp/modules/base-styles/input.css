@@ -8,5 +8,5 @@
 
 .input:focus {
     outline-width: 0;
-    border: 0.2em solid #28e;
+    border: 0.2em solid #444;
 }

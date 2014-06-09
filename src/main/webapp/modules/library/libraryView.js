@@ -1,45 +1,56 @@
 define(function(require) {
 
-    var _ = require('underscore'),
-        template = require('text!./libraryView.mustache'),
-        renderTemplate = require('base/renderTemplate'),
-        AddBookView = require('./books/addBookView'),
-        rivets = require('rivets');
+    var _ = require('underscore');
+    var BaseView = require('base/view');
 
-    var LibraryView = function(options) {
-        var el = options.el;
-        var libraryRepository = options.libraryRepository;
+    var template = require('text!./libraryView.mustache');
 
-        var getLibrary = function() {
-            libraryRepository.getLibrary(options.libraryId).done(libraryReceived);
-        };
+    var AddBookView = require('./books/addBookView');
+    var Genres = require('./books/genres');
+    var Book = require('./books/book');
 
-        var libraryReceived = function(response) {
-            rivets.bind(el.find('.books'), { books: response.books });
-        };
+    var LibraryView = BaseView.extend({
+        events: {
+            'click .add-book': 'addBookClicked'
+        },
 
-        var addBookClicked = function(event) {
+        initialize: function(options) {
+            this.library = options.library;
+
+            this.genres = new Genres();
+            var book = new Book();
+            this.addBookView = new AddBookView({
+                genres: this.genres,
+                book: book
+            });
+            this.listenTo(this.addBookView, "book:added", this.bookAdded);
+            this.listenTo(this.library, "add", this.render);
+        },
+
+        render: function() {
+            this.renderTemplate(template, {
+                books: this.library.toJSON()
+            });
+            return this;
+        },
+
+        addBookClicked: function(event) {
             event.preventDefault();
 
-            el.find('.book-input-form').removeClass('hide');
-            var addBookView = AddBookView({
-                el: el.find('.book-input-form')
-            });
-            addBookView.render();
-        };
+            this.addBookView.setElement(this.$('.add-book-view'));
 
-        var render = function() {
-            el.html(renderTemplate(template));
+            this.genres.fetch().done(_.bind(this.genresReceived, this));
+        },
 
-            el.find('.add-book').click(addBookClicked);
+        genresReceived: function() {
+            this.addBookView.render();
+            this.addBookView.show();
+        },
 
-            getLibrary();
-        };
-
-        return {
-            render: render
+        bookAdded: function(book) {
+            this.library.add(book);
         }
-    };
+    });
 
     return LibraryView;
 });

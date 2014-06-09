@@ -1,0 +1,27 @@
+{
+  "name": "no-bs",
+  "version": "0.0.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.6",
+    "requirejs-text": "~2.0.6",
+    "require-css": "~0.0.6",
+    "almond": "~0.2.5",
+    "jquery": "~2.0.1",
+    "mustache": "~0.7.2",
+    "normalize-css": "~2.1.2",
+    "underscore": "~1.4.4",
+    "backbone": "~1.0.0",
+    "po.js": "~0.0.2"
+  },
+  "devDependencies": {
+    "sinon": "~1.7.3",
+    "jasmine-sinon": "~0.1.0",
+    "sinonjs": "~1.7.1",
+    "jasmine-jquery": "~1.5.5"
+  }
+}

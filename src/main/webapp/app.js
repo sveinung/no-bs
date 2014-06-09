@@ -1,12 +1,12 @@
 requirejs.config({
     paths: {
-        'components': 'bower_components/',
         'jquery': 'bower_components/jquery/jquery',
         'underscore': 'bower_components/underscore/underscore',
+        'backbone': 'bower_components/backbone/backbone',
         'text': 'bower_components/requirejs-text/text',
         'mustache': 'bower_components/mustache/mustache',
-        'rivets': 'bower_components/rivets/dist/rivets',
-        'base': 'modules/base'
+        'base': 'modules/base',
+        'components': 'bower_components'
     },
     shim: {
         'jquery': {
@@ -14,11 +14,15 @@ requirejs.config({
         },
         'underscore': {
             exports: '_'
+        },
+        'backbone': {
+            exports: 'Backbone',
+            deps: ['jquery', 'underscore']
         }
     },
     map: {
         '*': {
-            'css': 'components/require-css/css'
+            'css': 'bower_components/require-css/css'
         }
     }
 })
@@ -27,31 +31,21 @@ define(function(require) {
 
     require('modules/base-styles/base-styles');
 
-    var $ = require('jquery'),
-        rivets = require('rivets');
+    var $ = require('jquery');
 
     var LibraryView = require('modules/library/libraryView');
-    var LibraryRepository = require('modules/library/libraryRepository');
+    var Library = require('modules/library/library');
 
     $(function() {
-        rivets.configure({
-            adapter: {
-                preloadData: false,
-                subscribe: function(obj, keypath, callback) {
-                    console.log("subscribe: ", obj, keypath, callback);
-                },
-                read: function(obj, keypath) {
-                    console.log("read: ", obj, keypath);
-                    return obj;
-                }
-            }
+        var library = new Library();
+
+        var libraryView = new LibraryView({
+            library: library
         });
 
-        var libraryView = LibraryView({
-            el: $(".library"),
-            libraryId: 1,
-            libraryRepository: LibraryRepository()
+        library.fetch().done(function() {
+            libraryView.setElement($(".library"));
+            libraryView.render();
         });
-        libraryView.render();
     });
 });

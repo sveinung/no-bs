@@ -8,6 +8,12 @@
 .icon-hover-only .icon { display: none; }
 .icon-hover-only:hover .icon { display: inline-block; }
 
+<<<<<<< HEAD
 .icon-plus {
     background-position: -405px -93px;
 }
+=======
+.icon-plus {        background-position: -405px -93px; }
+.icon-arrow-down {  background-position: -312px -117px; }
+
+>>>>>>> page-objects-example/master

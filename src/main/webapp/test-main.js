@@ -14,12 +14,13 @@ requirejs.config({
         'underscore': 'bower_components/underscore/underscore',
         'text': 'bower_components/requirejs-text/text',
         'mustache': 'bower_components/mustache/mustache',
-        'rivets': 'bower_components/rivets/dist/rivets',
+        'backbone': 'bower_components/backbone/backbone',
         'base': 'modules/base',
 
-        'sinon': '/base/src/main/webapp/bower_components/sinonjs/sinon',
-        'jasmine-sinon': '/base/src/main/webapp/bower_components/jasmine-sinon/lib/jasmine-sinon',
-        'responseFaker': 'modules/components/responseFaker'
+        'sinon': 'bower_components/sinonjs/sinon',
+        'jasmine-sinon': 'bower_components/jasmine-sinon/lib/jasmine-sinon',
+        'responseFaker': 'modules/components/responseFaker',
+        'po': 'bower_components/po.js/po'
     },
     shim: {
         'jquery': {
@@ -27,6 +28,10 @@ requirejs.config({
         },
         'underscore': {
             exports: '_'
+        },
+        'backbone': {
+            exports: 'Backbone',
+            deps: ['jquery', 'underscore']
         },
         'sinon': {
             exports: 'sinon'
@@ -41,17 +46,3 @@ requirejs.config({
     deps: deps,
     callback: window.__karma__.start
 });
-
-require(['rivets'], function(rivets) {
-    rivets.configure({
-        adapter: {
-            preloadData: false,
-            subscribe: function(obj, keypath, callback) {
-            },
-            read: function(obj, keypath) {
-                return obj;
-            }
-        }
-    });
-});
-

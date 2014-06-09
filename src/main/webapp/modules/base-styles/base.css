@@ -6,7 +6,7 @@ html {
 ul { padding: 0; }
 
 li { list-style-type: none; }
-li:hover { background-color: #4af; }
+li:hover { background-color: #aaa; }
 
 h3 { padding: 0 0.5em;}
 li { padding: 0.5em; }

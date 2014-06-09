@@ -16,11 +16,12 @@ files = [
   { pattern: 'src/main/webapp/bower_components/jasmine-sinon/lib/jasmine-sinon.js', included: false },
   { pattern: 'src/main/webapp/bower_components/jasmine-jquery/lib/jasmine-jquery.js', included: true },
   { pattern: 'src/main/webapp/bower_components/requirejs-text/text.js', included: false },
-  { pattern: 'src/main/webapp/bower_components/rivets/dist/rivets.js', included: false },
   { pattern: 'src/main/webapp/bower_components/underscore/underscore.js', included: false },
   { pattern: 'src/main/webapp/bower_components/mustache/mustache.js', included: false },
   { pattern: 'src/main/webapp/bower_components/require-css/css.js', included: false },
   { pattern: 'src/main/webapp/bower_components/require-css/normalize.js', included: false },
+  { pattern: 'src/main/webapp/bower_components/backbone/backbone.js', included: false },
+  { pattern: 'src/main/webapp/bower_components/po.js/po.js', included: false },
   'src/main/webapp/test-main.js'
 ];
 

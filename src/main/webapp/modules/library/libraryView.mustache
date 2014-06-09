@@ -1,13 +1,20 @@
 <div class="library-controls box cell cell-2">
     <header class="library-header">
-        <h3><span>Your library</span> <a href="#" class="add-book"><i class="icon icon-plus"></i></a></h3>
+        <h3>
+            <span>Your library</span>
+            <a href="#" class="add-book">
+                <i class="icon icon-plus"></i>
+            </a>
+        </h3>
     </header>
     <ul class="books">
-        <li data-each-book="books">
-            <span data-text="book:title"></span>
+        {{#books}}
+        <li>
+            <span>{{title}}</span>
         </li>
+        {{/books}}
     </ul>
 </div>
 <div class="library-content">
-    <form class="book-input-form form box cell cell-3 hide"></form>
+    <form class="add-book-view form box cell cell-3 hide"></form>
 </div>

@@ -1,9 +1,6 @@
 package nobs.book;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 @Path(BookResource.BOOK_PATH)
@@ -23,6 +20,15 @@ public class BookResource {
     @Produces(MediaType.APPLICATION_JSON)
     public BookDTO getBook(@PathParam("id") int id) {
         Book book = bookRepository.getBook(new BookID(id));
+
+        return new BookDTO(book);
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public BookDTO createBook(BookDTO bookDTO) {
+        Book book = bookRepository.saveBook(bookDTO.transfer());
 
         return new BookDTO(book);
     }

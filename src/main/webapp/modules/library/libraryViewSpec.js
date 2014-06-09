@@ -1,49 +1,77 @@
 define(function(require) {
 
-    var LibraryView = require('modules/library/libraryView'),
-        LibraryRepository = require('modules/library/libraryRepository'),
-        $ = require('jquery'),
-        sinon = require('sinon'),
-        responseFaker = require('responseFaker');
+    var LibraryView = require('modules/library/libraryView');
+    var Library = require('modules/library/library');
+
+    var libraryViewPageObject = require('modules/library/libraryViewPageObject');
 
     describe('LibraryView', function() {
-        it('has books', function() {
-            var el = $('<div></div>');
+        it('displays books', function() {
+            var books = [
+                "Of Mice and Men",
+                "Sult"
+            ];
 
-            var libraryView = LibraryView({
-                el: el,
-                libraryId: 1,
-                libraryRepository: LibraryRepository()
-            });
+            var libraryView = createLibraryView({ books: books });
+            libraryView.render();
 
-            var response = {"books":[{"title":"Of Mice and Men","uri":"/book/1"},{"title":"Sult","uri":"/book/2"}]};
-            responseFaker.fakeResponse(response, {}, function() {
-                libraryView.render();
-            });
-
-            expect(el.find(".books li").size()).toBe(2);
+            libraryViewPageObject(libraryView.$el).
+                expectToHaveNumberOfBooks(2);
         });
 
-        it('shows the AddBookView', function() {
-            var el = $('<div></div>');
+        it('can show view for adding books', function() {
+            var libraryView = createLibraryView();
+            libraryView.render();
 
-            var libraryView = LibraryView({
-                el: el,
-                libraryId: 1,
-                libraryRepository: LibraryRepository()
-            });
+            libraryViewPageObject(libraryView.$el).
+                clickAddBook(function(addBookViewPageObject) {
+                    addBookViewPageObject.expectToBeVisible();
+                });
+        });
 
-            expect(el.find(".book-input-form")).not.toBe("form");
+        it('defaults to showing no books', function() {
+            var libraryView = createLibraryView();
+            libraryView.render();
 
-            var response = {"books":[{"title":"Of Mice and Men","uri":"/book/1"},{"title":"Sult","uri":"/book/2"}]};
-            responseFaker.fakeResponse(response, {}, function() {
-                libraryView.render();
-            });
+            libraryViewPageObject(libraryView.$el).
+                expectToHaveNumberOfBooks(0);
+        });
 
-            el.find(".add-book").click();
+        it('adds a book to the list', function() {
+            var libraryView = createLibraryView();
+            libraryView.render();
 
-            expect(el.find(".book-input-form")).toBe("form");
-            expect(el.find(".book-input-form")).not.toHaveClass("hide");
+            libraryViewPageObject(libraryView.$el).
+                clickAddBook(function(addBookViewPageObject) {
+                    addBookViewPageObject.fillIn().save();
+                }).
+                expectToHaveNumberOfBooks(1);
+        });
+
+        it('does not add book when canceling', function() {
+            var libraryView = createLibraryView();
+            libraryView.render();
+
+            libraryViewPageObject(libraryView.$el).
+                clickAddBook(function(addBookViewPageObject) {
+                    addBookViewPageObject.cancel();
+                }).
+                expectToHaveNumberOfBooks(0);
         });
     });
+
+    function createLibraryView(options) {
+        options = options || {};
+
+        var books = [];
+        if (options.books) {
+            books = _.map(options.books, function(book, i) {
+                return { title: book, url: '/books/' + i };
+            });
+        }
+
+        return new LibraryView({
+            library: new Library(books)
+        });
+    }
 });
