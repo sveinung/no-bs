@@ -1,6 +1,8 @@
 .gradle
 .idea
 *.iml
+*.ipr
+*.iws
 build/
 .DS_Store
 .vagrant
