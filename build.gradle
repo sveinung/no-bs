@@ -10,7 +10,7 @@ repositories {
 }
 
 project.ext {
-    jettyVersion = '8.0.1.v20110908'
+    jettyVersion = '9.2.1.v20140609'
     javaxWsRsVersion = '1.1.1'
     jerseyVersion = '1.17'
 }
