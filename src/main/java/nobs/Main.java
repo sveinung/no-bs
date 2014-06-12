@@ -27,7 +27,7 @@ public class Main
 
             srv.setStopAtShutdown(true);
 
-            srv.setHandler(getWebAppContext(configuration));
+            srv.setHandler(getWebAppContext());
 
             srv.start();
             srv.join();
@@ -38,7 +38,7 @@ public class Main
         }
     }
 
-    private Handler getWebAppContext(Configuration configuration)
+    private Handler getWebAppContext()
     {
         String webApp;
         if (configuration.isDev())
