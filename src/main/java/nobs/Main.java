@@ -8,13 +8,15 @@ public class Main
 {
     public static void main(String[] args)
     {
+        Configuration configuration = new Configuration(System.getProperties());
+
         try
         {
-            Server srv = new Server(8080);
+            Server srv = new Server(configuration.getPort());
 
             srv.setStopAtShutdown(true);
 
-            srv.setHandler(getWebAppContext());
+            srv.setHandler(getWebAppContext(configuration));
 
             srv.start();
             srv.join();
@@ -25,10 +27,10 @@ public class Main
         }
     }
 
-    private static Handler getWebAppContext()
+    private static Handler getWebAppContext(Configuration configuration)
     {
         String webApp;
-        if ("true".equals(System.getProperty("dev")))
+        if (configuration.isDev())
         {
             webApp = "src/main/webapp";
         } else

@@ -45,4 +45,5 @@ jar.dependsOn frontendBuild
 
 run {
     systemProperty "dev", "true"
+    systemProperty "port", "8080"
 }
