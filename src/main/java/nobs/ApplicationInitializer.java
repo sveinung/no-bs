@@ -1,6 +1,6 @@
 package nobs;
 
-import com.sun.jersey.spi.container.servlet.ServletContainer;
+import org.glassfish.jersey.servlet.ServletContainer;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;

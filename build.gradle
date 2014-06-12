@@ -11,8 +11,8 @@ repositories {
 
 project.ext {
     jettyVersion = '9.2.1.v20140609'
-    javaxWsRsVersion = '1.1.1'
-    jerseyVersion = '1.17'
+    javaxWsRsVersion = '2.0'
+    jerseyVersion = '2.9'
 }
 
 dependencies {
@@ -20,12 +20,13 @@ dependencies {
     compile group: 'org.eclipse.jetty', name: 'jetty-webapp', version: project.jettyVersion
     compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version: project.jettyVersion
 
-    compile group: 'javax.ws.rs', name: 'jsr311-api', version: project.javaxWsRsVersion
+    compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: project.javaxWsRsVersion
 
-    compile group: 'com.sun.jersey', name: 'jersey-servlet', version: project.jerseyVersion
-    compile group: 'com.sun.jersey', name: 'jersey-server', version: project.jerseyVersion
-    compile group: 'com.sun.jersey', name: 'jersey-core', version: project.jerseyVersion
-    compile group: 'com.sun.jersey', name: 'jersey-json', version: project.jerseyVersion
+    compile group: 'org.glassfish.jersey.core', name: 'jersey-common', version: project.jerseyVersion
+    compile group: 'org.glassfish.jersey.core', name: 'jersey-server', version: project.jerseyVersion
+    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet-core', version: project.jerseyVersion
+    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet', version: project.jerseyVersion
+    compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: project.jerseyVersion
 }
 
 task frontendBuild(type:Exec) {
