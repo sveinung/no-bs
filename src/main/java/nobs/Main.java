@@ -8,8 +8,19 @@ public class Main
 {
     public static void main(String[] args)
     {
-        Configuration configuration = new Configuration(System.getProperties());
+        Main main = new Main(new Configuration(System.getProperties()));
+        main.start();
+    }
 
+    private Configuration configuration;
+
+    public Main(Configuration configuration)
+    {
+        this.configuration = configuration;
+    }
+
+    private void start()
+    {
         try
         {
             Server srv = new Server(configuration.getPort());
@@ -27,7 +38,7 @@ public class Main
         }
     }
 
-    private static Handler getWebAppContext(Configuration configuration)
+    private Handler getWebAppContext(Configuration configuration)
     {
         String webApp;
         if (configuration.isDev())
