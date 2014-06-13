@@ -1,4 +1,4 @@
-package nobs;
+package nobs.startup;
 
 public interface ContainerAdapter
 {

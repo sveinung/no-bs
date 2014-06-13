@@ -1,4 +1,4 @@
-package nobs;
+package nobs.startup;
 
 import nobs.book.BookRepository;
 import nobs.book.BookResource;
