@@ -3,7 +3,7 @@ apply plugin: 'application'
 apply plugin: 'idea'
 
 sourceCompatibility = 1.8
-mainClassName = 'nobs.Main'
+mainClassName = 'nobs.Application'
 
 repositories {
     mavenCentral()

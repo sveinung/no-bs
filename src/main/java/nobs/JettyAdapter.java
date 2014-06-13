@@ -4,22 +4,21 @@ import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
 
-public class Main
+public class JettyAdapter implements ContainerAdapter
 {
-    public static void main(String[] args)
-    {
-        Main main = new Main(new Configuration(System.getProperties()));
-        main.start();
-    }
-
     private Configuration configuration;
+    private WebAppInitializer webAppInitializer;
 
-    public Main(Configuration configuration)
+    public JettyAdapter(
+            Configuration configuration,
+            WebAppInitializer webAppInitializer)
     {
         this.configuration = configuration;
+        this.webAppInitializer = webAppInitializer;
     }
 
-    private void start()
+    @Override
+    public void start()
     {
         try
         {
@@ -46,11 +45,11 @@ public class Main
             webApp = "src/main/webapp";
         } else
         {
-            webApp = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+            webApp = Application.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         }
         WebAppContext webAppContext = new WebAppContext(webApp, "/");
 
-        webAppContext.addEventListener(new ApplicationInitializer());
+        webAppContext.addEventListener(webAppInitializer);
 
         return webAppContext;
     }

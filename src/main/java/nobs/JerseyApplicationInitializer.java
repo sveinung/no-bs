@@ -11,27 +11,13 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
 import javax.servlet.ServletRegistration;
 import java.util.HashMap;
 
-public class ApplicationInitializer implements ServletContextListener
+public class JerseyApplicationInitializer extends WebAppInitializer
 {
     @Override
-    public void contextInitialized(ServletContextEvent sce)
-    {
-        ServletContext servletContext = sce.getServletContext();
-
-        initializeJersey(servletContext);
-    }
-
-    @Override
-    public void contextDestroyed(ServletContextEvent sce)
-    {
-    }
-
-    private void initializeJersey(ServletContext servletContext)
+    public void initialize(ServletContext servletContext)
     {
         ServletRegistration.Dynamic jersey = servletContext.addServlet(
                 "jersey",
