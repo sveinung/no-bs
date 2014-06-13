@@ -1,4 +1,7 @@
 allprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+
     group = 'nobs'
     version = '1.0'
 }
