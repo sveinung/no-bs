@@ -1,5 +1,8 @@
 package nobs.genre;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -7,13 +10,11 @@ import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 @Path("/genre")
 public class GenreResource {
+    @Autowired
     private GenreRepository genreRepository;
-
-    public GenreResource(GenreRepository genreRepository) {
-        this.genreRepository = genreRepository;
-    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

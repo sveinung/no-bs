@@ -1,19 +1,20 @@
 package nobs.book;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
+@Component
 @Path(BookResource.BOOK_PATH)
 public class BookResource {
 
     public static final String BOOK_PATH = "/book";
     public static final String ID_PATH = "/{id}";
 
+    @Autowired
     private BookRepository bookRepository;
-
-    public BookResource(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
 
     @GET
     @Path(ID_PATH)

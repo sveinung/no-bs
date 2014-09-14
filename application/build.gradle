@@ -13,7 +13,7 @@ repositories {
 project.ext {
     jettyVersion = '9.2.1.v20140609'
     javaxWsRsVersion = '2.0'
-    jerseyVersion = '2.9'
+    jerseyVersion = '2.12'
 }
 
 dependencies {
@@ -30,6 +30,7 @@ dependencies {
     compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet-core', version: project.jerseyVersion
     compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet', version: project.jerseyVersion
     compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: project.jerseyVersion
+    compile group: 'org.glassfish.jersey.ext', name: 'jersey-spring3', version: project.jerseyVersion
 }
 
 task frontendBuild(type:Exec) {

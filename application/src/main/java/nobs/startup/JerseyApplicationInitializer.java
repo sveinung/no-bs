@@ -1,12 +1,5 @@
 package nobs.startup;
 
-import nobs.book.BookRepository;
-import nobs.book.BookResource;
-import nobs.book.BookURIBuilder;
-import nobs.genre.GenreRepository;
-import nobs.genre.GenreResource;
-import nobs.library.LibraryRepository;
-import nobs.library.LibraryResource;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
 
@@ -19,6 +12,8 @@ public class JerseyApplicationInitializer extends WebAppInitializer
     @Override
     public void initialize(ServletContext servletContext)
     {
+        servletContext.setInitParameter("contextConfigLocation", "classpath:applicationContext.xml");
+
         ServletRegistration.Dynamic jersey = servletContext.addServlet(
                 "jersey",
                 new ServletContainer(createJerseyResourceConfig()));
@@ -34,21 +29,9 @@ public class JerseyApplicationInitializer extends WebAppInitializer
     {
         ResourceConfig resourceConfig = new ResourceConfig();
 
-        BookRepository bookRepository = new BookRepository();
-
-        LibraryResource libraryResource = new LibraryResource(
-                new LibraryRepository(bookRepository),
-                new BookURIBuilder());
-
-        BookResource bookResource = new BookResource(bookRepository);
-
-        GenreResource genreResource = new GenreResource(new GenreRepository());
-
-        resourceConfig.registerInstances(
-                libraryResource,
-                bookResource,
-                genreResource
-        );
+        resourceConfig
+                .packages("nobs.library")
+                ;
 
         return resourceConfig;
     }

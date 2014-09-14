@@ -1,9 +1,12 @@
 package nobs.book;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+@Repository
 public class BookRepository {
 
     private final HashMap<Integer,Book> books;

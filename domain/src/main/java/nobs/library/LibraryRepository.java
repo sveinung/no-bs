@@ -1,12 +1,17 @@
 package nobs.library;
 
 import nobs.book.BookRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class LibraryRepository {
+    @Autowired
     private BookRepository bookRepository;
 
-    public LibraryRepository(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
+    public LibraryRepository()
+    {
+        System.out.println("--------- LibraryRepository");
     }
 
     public Library getLibrary() {

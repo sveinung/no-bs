@@ -1,8 +1,11 @@
 package nobs.genre;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class GenreRepository {
     public List<Genre> getGenres() {
         ArrayList<Genre> genres = new ArrayList<>();
